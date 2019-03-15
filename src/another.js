@@ -1,5 +1,12 @@
 import './styles/anotherStyles.scss';
 
-export const sayHello = () => {
-    console.log('hello');
-};
+export default class Person{
+    sayHello = ({abc}) => {
+        const a = {
+            ...abc,
+            another: 'hi'
+        };
+        console.log('hello');
+        console.log(a);
+    }
+}

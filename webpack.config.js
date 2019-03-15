@@ -10,26 +10,33 @@ module.exports = {
   },
   module:{
     rules:[
-        {
-          test: /\.js/,
-          exclude: /(node_modules|bower_components)/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env']
-              }
-            },
-            {
-              loader: path.resolve('myloader.js'),
-              options: {}
-            }
-          ]
-        },
-        {
-          test:/\.(s*)css$/,
-          use:[MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-        }
+      {
+        test: /\.js/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          'ignore-loader'
+          // {
+          //   loader: 'babel-loader',
+          //   options: {
+          //     cacheDirectory: true,
+          //     presets: ['@babel/preset-env'],
+          //     plugins: ['@babel/plugin-proposal-class-properties']
+          //   }
+          // }          
+          // {
+          //   loader: path.resolve('myloader.js'),
+          //   options: {}
+          // }
+        ]
+      },
+      {
+        test:/\.(s*)css$/,
+        include: [
+          path.resolve(__dirname, 'src/styles/'),
+          path.resolve(__dirname, 'node_modules/.cache/babel-loader/')
+        ],
+        use:[MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      }        
    ]
   },
   plugins: [
